@@ -5,7 +5,7 @@
 				<b-button v-if="isAuthenticated === true && showAccess === true" v-b-toggle.sidebar variant="info" class="border-0 mr-3">
 					<b-icon icon="menu-button-wide" />
 				</b-button>
-				<b-navbar-brand :to="isAuthenticated ? '/bonos':'/'">
+				<b-navbar-brand :to="isAuthenticated ? '/inicio':'/'">
 					{{ appName }}
 				</b-navbar-brand>
 			</div>
