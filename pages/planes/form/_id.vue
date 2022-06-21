@@ -449,24 +449,11 @@ export default {
 		validationGroup: ['plan', 'coordx', 'coordy', 'lat', 'lng']
 	},
 	async fetch () {
-		if (this.id != null || this.id !== undefined) {
-			const data = await this.$axios.$get('planes-protagonista/' + this.id)
-			this.plan = data.properties
-			this.plan.entregado = data.properties.entregado === true ? 'entregado' : 'no-entregado'
-			this.plan.activo = data.properties.activo === true ? 'activo' : 'no-activo'
-			this.plan.location = data.geometry
-			const protagonista = await this.$axios.$get('protagonistas/' + data.properties.protagonista)
-			this.plan.protagonista = `${protagonista.nombres.toUpperCase()} ${protagonista.apellidos.toUpperCase()} >>> ${protagonista.cedula.toUpperCase()}`
-			const lCapitalizacion = await this.$axios.$get(`capitalizacion/por_plan/?plan=${this.id}&edit=1`)
-			if (lCapitalizacion !== null && lCapitalizacion.length > 0) {
-				this.listaCapitalizacion.unshift(...lCapitalizacion)
-			}
-		}
-		const lProtagonistas = await this.$axios.$get('protagonistas/')
+		const lProtagonistas = await this.$axios.$get('lista-protagonistas/')
 		this.listaProtagonistas = lProtagonistas
 		const lBonos = await this.$axios.$get('planes/')
 		this.listaBonos = lBonos
-		const lProyectos = await this.$axios.$get('proyectos/activos/')
+		const lProyectos = await this.$axios.$get('lista-proyectos/')
 		this.listaProyectos = lProyectos
 		const lComunidades = await this.$axios.$get('comunidades/')
 		this.listaComunidades = lComunidades
@@ -480,6 +467,21 @@ export default {
 			console.log(perm)
 			const has_perm = await this.$axios.$get('has-perm/?perm=' + perm)
 			this.permissions[perm] = has_perm[perm]
+		}
+		if (this.id != null || this.id !== undefined) {
+			const data = await this.$axios.$get('planes-protagonista/' + this.id)
+			this.plan = data.properties
+			this.plan.entregado = data.properties.entregado === true ? 'entregado' : 'no-entregado'
+			this.plan.activo = data.properties.activo === true ? 'activo' : 'no-activo'
+			this.plan.location = data.geometry
+			const protagonista = await this.$axios.$get('protagonistas/' + data.properties.protagonista)
+			this.plan.protagonista = `${protagonista.nombres.toUpperCase()} ${protagonista.apellidos.toUpperCase()} >>> ${protagonista.cedula.toUpperCase()}`
+			const lCapitalizacion = await this.$axios.$get(`capitalizacion/por_plan/?plan=${this.id}&edit=1`)
+			if (lCapitalizacion !== null && lCapitalizacion.length > 0) {
+				this.listaCapitalizacion.unshift(...lCapitalizacion)
+			}
+			const lTecnicos = await this.$axios.$get('tecnicos/')
+			this.listaTecnicos = lTecnicos
 		}
 		this.showOverlay = false
 	},
@@ -498,9 +500,9 @@ export default {
 			]
 		},
 		protagonistas () {
-			const l = this.listaProtagonistas.count
+			const l = this.listaProtagonistas.length
 			if (l != null && l > 0) {
-				const lista = this.listaProtagonistas.results.map((prota) => {
+				const lista = this.listaProtagonistas.map((prota) => {
 					return prota.nombres.toUpperCase() + ' ' + prota.apellidos.toUpperCase() + ' >>> ' + prota.cedula.toUpperCase()
 				})
 				return lista
@@ -509,9 +511,9 @@ export default {
 			}
 		},
 		bonos () {
-			const l = this.listaBonos.count
+			const l = this.listaBonos.length
 			if (l != null && l > 0) {
-				const lista = this.listaBonos.results.map((bono) => {
+				const lista = this.listaBonos.map((bono) => {
 					return { value: bono.id, text: bono.nombre.toUpperCase() }
 				})
 				lista.unshift({ value: null, text: 'Seleccione el Plan' })
@@ -521,9 +523,9 @@ export default {
 			}
 		},
 		comunidades () {
-			const l = this.listaComunidades.count
+			const l = this.listaComunidades.length
 			if (l != null && l > 0) {
-				const lista = this.listaComunidades.results.map((comunidad) => {
+				const lista = this.listaComunidades.map((comunidad) => {
 					return { value: comunidad.id, text: comunidad.municipio.toUpperCase() + '-' + comunidad.nombre.toUpperCase() }
 				})
 				lista.unshift({ value: null, text: 'Seleccione la Comunidad' })

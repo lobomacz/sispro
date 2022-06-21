@@ -1,6 +1,9 @@
 <template>
-	<div class="container">
-		<h1 class="text-uppercase my-3">&#x2632; Protagonistas</h1>
+	<b-container fluid>
+		<h1 class="text-uppercase my-3">
+			&#x2632; Protagonistas
+		</h1>
+		<Searchbar placeholder="Cedula" @search="buscar" />
 		<b-table
 		striped
 		hover
@@ -10,7 +13,7 @@
 		:select-mode="selectMode"
 		@row-selected="verDetalle"
 		/>
-	</div>
+	</b-container>
 </template>
 <script>
 export default {
@@ -30,6 +33,9 @@ export default {
 		verDetalle (row) {
 			const rowId = row[0].cedula
 			this.$router.push({ name: 'protagonistas-ced', params: { ced: rowId } })
+		},
+		buscar () {
+			// TODO: Crear implementación
 		}
 	}
 }

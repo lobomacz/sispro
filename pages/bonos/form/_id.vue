@@ -265,6 +265,16 @@ export default {
 		validationGroup: ['bono', 'coordx', 'coordy', 'lat', 'lng']
 	},
 	async fetch () {
+		const lProtagonistas = await this.$axios.$get('lista-protagonistas/')
+		this.listaProtagonistas = lProtagonistas
+		const lBonos = await this.$axios.$get('bonos/')
+		this.listaBonos = lBonos
+		const lProyectos = await this.$axios.$get('lista-proyectos/')
+		this.listaProyectos = lProyectos
+		const lComunidades = await this.$axios.$get('comunidades/')
+		this.listaComunidades = lComunidades
+		const lTecnicos = await this.$axios.$get('tecnicos/activos/')
+		this.listaTecnicos = lTecnicos
 		if (this.id != null || this.id !== undefined) {
 			const data = await this.$axios.$get('bonos-protagonista/' + this.id)
 			this.bono = data.properties
@@ -273,24 +283,9 @@ export default {
 			this.bono.activo = data.properties.activo === true ? 'activo' : 'no-activo'
 			const protagonista = await this.$axios.$get('protagonistas/' + this.bono.protagonista)
 			this.bono.protagonista = `${protagonista.nombres.toUpperCase()} ${protagonista.apellidos.toUpperCase()} >>> ${protagonista.cedula.toUpperCase()}`
-			/* this.bono = bono.id
-			this.proyecto = bono.proyecto
-			this.tecnico = bono.tecnico
-			this.comunidad = bono.comunidad
-			this.location = bono.location
-			this.digitador = bono.digitador
-			this.observaciones = bono.observaciones */
+			const lTecnicos = await this.$axios.$get('tecnicos/')
+			this.listaTecnicos = lTecnicos
 		}
-		const lProtagonistas = await this.$axios.$get('protagonistas/')
-		this.listaProtagonistas = lProtagonistas
-		const lBonos = await this.$axios.$get('bonos/')
-		this.listaBonos = lBonos
-		const lProyectos = await this.$axios.$get('proyectos/activos/')
-		this.listaProyectos = lProyectos
-		const lComunidades = await this.$axios.$get('comunidades/')
-		this.listaComunidades = lComunidades
-		const lTecnicos = await this.$axios.$get('tecnicos/activos/')
-		this.listaTecnicos = lTecnicos
 		this.showOverlay = false
 	},
 	fetchOnServer: false,

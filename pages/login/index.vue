@@ -176,7 +176,7 @@ export default {
 					this.$auth.$storage.setLocalStorage('loginTime', date)
 					this.overlay = false
 					this.$nuxt.$loading.finish()
-					this.$router.push('/planes')
+					this.$router.push('/inicio')
 				} else {
 					this.dismissCountDown = this.dismissSecs
 				}
