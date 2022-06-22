@@ -7,9 +7,10 @@
 				:header="appName"
 				:title="fullName"
 				:sub-title="officeName"
+				header-bg-variant="info"
+				header-text-variant="light"
+				border-variant="info"
 				class="text-center"
-				bg-variant="light"
-				border-variant="secondary"
 				>
 					<b-container>
 						<b-row class="mt-4">
