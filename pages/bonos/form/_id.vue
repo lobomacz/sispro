@@ -197,7 +197,7 @@
 						<b-row class="mt-4">
 							<b-col md="3">
 								<b-button class="text-uppercase" variant="success" @click="guardar">
-									{{ isNew() ? 'Actualizar' : 'Guardar' }}&nbsp;&nbsp;<b-icon icon="save" />
+									{{ isNew() ? 'Guardar' : 'Actualizar' }}&nbsp;&nbsp;<b-icon icon="save" />
 								</b-button>
 								<b-button class="text-uppercase" variant="warning" @click="cancelar">
 									Cancelar&nbsp;&nbsp;<b-icon icon="arrow-counterclockwise" />

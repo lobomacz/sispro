@@ -350,7 +350,7 @@
 								:disabled="!permissions.add_protagonistabono && !permissions.change_protagonistabono && !permissions.change_capitalizacion"
 								@click="guardar"
 								>
-									{{ isNew() ? 'Actualizar' : 'Guardar' }}&nbsp;&nbsp;<b-icon icon="save" />
+									{{ isNew() ? 'Guardar' : 'Actualizar' }}&nbsp;&nbsp;<b-icon icon="save" />
 								</b-button>
 								<b-button class="text-uppercase" variant="warning" @click="goBack">
 									Cancelar&nbsp;&nbsp;<b-icon icon="arrow-counterclockwise" />
