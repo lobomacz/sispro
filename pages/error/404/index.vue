@@ -11,9 +11,9 @@
 				border-variant="secondary"
 				>
 					<p class="display-3">
-						¡Error 400!
+						¡Error 404!
 					</p>
-					<p>Ocurrió un error al procesar su solicitud.</p>
+					<p>El recurso o página no existe.</p>
 					<p>Verifique los datos y vuelva a intentarlo.</p>
 					<p>Si el problema persiste, póngase en contacto con el administrador del sistema.</p>
 					<b-link to="/inicio">
