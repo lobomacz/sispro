@@ -619,6 +619,23 @@ export default {
 				return capitalizacion
 			})
 		},
+		preparaGeometria () {
+			if (this.plan.location === null && this.addLocation === true) {
+				if (this.coordToggle === true) {
+					this.plan.location = {
+						type: 'Point',
+						coordinates: [parseFloat(this.lng), parseFloat(this.lat)],
+						srid: 4326
+					}
+				} else {
+					this.plan.location = {
+						type: 'Point',
+						coordinates: [parseFloat(this.coordx), parseFloat(this.coordy)],
+						srid: parseInt(this.srid)
+					}
+				}
+			}
+		},
 		async guardaCapitalizacion () {
 			for (const capitalizacion of this.listaCapitalizacion) {
 				capitalizacion.total = capitalizacion.cantidad * capitalizacion.costo
@@ -663,6 +680,7 @@ export default {
 				this.$bvToast.toast('Guardando...')
 				if (!this.isNew()) {
 					this.plan.actualizado_por = this.getUser().id
+					this.preparaGeometria()
 					try {
 						const res = await this.$axios.put(`planes-protagonista/${this.id}/`, this.plan)
 						if (res.status === 200) {
@@ -674,21 +692,7 @@ export default {
 						this.errorToast(err)
 					}
 				} else {
-					if (this.plan.location === null && this.addLocation === true) {
-						if (this.coordToggle === true) {
-							this.plan.location = {
-								type: 'Point',
-								coordinates: [parseFloat(this.lng), parseFloat(this.lat)],
-								srid: 4326
-							}
-						} else {
-							this.plan.location = {
-								type: 'Point',
-								coordinates: [parseFloat(this.coordx), parseFloat(this.coordy)],
-								srid: parseInt(this.srid)
-							}
-						}
-					}
+					this.preparaGeometria()
 					this.plan.digitador = this.getUser().id
 					try {
 						const res = await this.$axios.post('planes-protagonista/', this.plan)
