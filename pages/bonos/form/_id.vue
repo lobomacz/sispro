@@ -245,7 +245,7 @@ export default {
 			lat: null,
 			lng: null,
 			showOverlay: true,
-			coordToggle: true,
+			coordToggle: false,
 			addLocation: false
 		}
 	},
