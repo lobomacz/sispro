@@ -383,6 +383,23 @@ export default {
 				variant: 'danger'
 			})
 		},
+		preparaGeometria () {
+			if (this.bono.location === null && this.addLocation === true) {
+				if (this.coordToggle === true) {
+					this.bono.location = {
+						type: 'Point',
+						coordinates: [parseFloat(this.lng), parseFloat(this.lat)],
+						srid: 4326
+					}
+				} else {
+					this.bono.location = {
+						type: 'Point',
+						coordinates: [parseFloat(this.coordx), parseFloat(this.coordy)],
+						srid: parseInt(this.srid)
+					}
+				}
+			}
+		},
 		async guardar () {
 			if (this.$v.validationGroup.$invalid) {
 				this.$bvToast.toast('Existen campos con errores. Por favor revise y vuelva a intentarlo.', {
@@ -400,6 +417,7 @@ export default {
 				this.bono.activo = this.bono.activo === 'activo'
 				this.$nuxt.$loading.start()
 				if (!this.isNew()) {
+					this.preparaGeometria()
 					this.bono.actualizado_por = this.getUser().id
 					try {
 						const res = await this.$axios.put('bonos-protagonista/' + this.id, this.bono)
@@ -410,21 +428,7 @@ export default {
 						this.errorToast(err)
 					}
 				} else {
-					if (this.bono.location === null && this.addLocation === true) {
-						if (this.coordToggle === true) {
-							this.bono.location = {
-								type: 'Point',
-								coordinates: [parseFloat(this.lng), parseFloat(this.lat)],
-								srid: 4326
-							}
-						} else {
-							this.bono.location = {
-								type: 'Point',
-								coordinates: [parseFloat(this.coordx), parseFloat(this.coordy)],
-								srid: parseInt(this.srid)
-							}
-						}
-					}
+					this.preparaGeometria()
 					this.bono.digitador = this.getUser().id
 					try {
 						const res = await this.$axios.post('bonos-protagonista/', this.bono)
