@@ -278,7 +278,7 @@ export default {
 		if (this.id != null || this.id !== undefined) {
 			const data = await this.$axios.$get('bonos-protagonista/' + this.id)
 			this.bono = data.properties
-			this.bono.location = data.geometry
+			this.bono.location = data.geometry === undefined ? null : data.geometry
 			this.bono.entregado = data.properties.entregado === true ? 'entregado' : 'no-entregado'
 			this.bono.activo = data.properties.activo === true ? 'activo' : 'no-activo'
 			const protagonista = await this.$axios.$get('protagonistas/' + this.bono.protagonista)

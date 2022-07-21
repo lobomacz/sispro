@@ -473,7 +473,7 @@ export default {
 			this.plan = data.properties
 			this.plan.entregado = data.properties.entregado === true ? 'entregado' : 'no-entregado'
 			this.plan.activo = data.properties.activo === true ? 'activo' : 'no-activo'
-			this.plan.location = data.geometry
+			this.plan.location = data.geometry === undefined ? null : data.geometry
 			const protagonista = await this.$axios.$get('protagonistas/' + data.properties.protagonista)
 			this.plan.protagonista = `${protagonista.nombres.toUpperCase()} ${protagonista.apellidos.toUpperCase()} >>> ${protagonista.cedula.toUpperCase()}`
 			const lCapitalizacion = await this.$axios.$get(`capitalizacion/por_plan/?plan=${this.id}&edit=1`)
