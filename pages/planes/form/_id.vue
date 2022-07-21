@@ -411,7 +411,7 @@ export default {
 			srid: 32617,
 			lat: null,
 			lng: null,
-			coordToggle: true,
+			coordToggle: false,
 			capitalizacionId: null,
 			capitalizacionIdx: null,
 			warningVariant: 'warning',
