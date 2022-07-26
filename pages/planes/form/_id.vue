@@ -639,6 +639,7 @@ export default {
 		async guardaCapitalizacion () {
 			for (const capitalizacion of this.listaCapitalizacion) {
 				capitalizacion.total = capitalizacion.cantidad * capitalizacion.costo
+				capitalizacion.total = parseFloat(capitalizacion.total.toFixed(2))
 				try {
 					if (capitalizacion.id === null) {
 						const res = await this.$axios.post('capitalizacion/', capitalizacion)
