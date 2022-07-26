@@ -11,7 +11,7 @@
 						El nombre de usuario y/o contraseña no son correctos.
 					</b-alert>
 					<b-card
-					img-src="GRACCS.png"
+					img-src="~/assets/img/GRACCS.png"
 					img-alt="Logo graccs"
 					img-top
 					class="mb-2"
