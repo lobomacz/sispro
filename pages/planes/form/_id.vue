@@ -653,7 +653,12 @@ export default {
 						}
 					}
 				} catch (err) {
-					console.log('Error al guardar capitalización!')
+					this.$bvToast.toast('Error al guardar capitalización. ' + err, {
+						title: 'Error',
+						variant: 'warning',
+						autoHideDelay: 2500,
+						appendToast: true
+					})
 					this.capRejected++
 				}
 			}

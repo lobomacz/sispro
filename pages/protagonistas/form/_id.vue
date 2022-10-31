@@ -82,7 +82,7 @@
 							label="Teléfono"
 							label-for="input-telefono"
 							>
-								<b-form-input id="input-telefono" v-model="protagonista.telefono" :type="types.telefono" trim />
+								<b-form-input id="input-telefono" v-model="protagonista.telefono" trim />
 							</b-form-group>
 						</b-col>
 					</b-row>
@@ -143,7 +143,7 @@ export default {
 				sexo: null,
 				etnia: null,
 				comunidad: null,
-				telefono: '',
+				telefono: null,
 				promotor: null,
 				jvc: null
 			},
@@ -155,7 +155,6 @@ export default {
 			listaEtnias: [],
 			listaComunidades: [],
 			placeholders: this.$store.getters.getPlaceholders,
-			types: this.$store.getters.getTypes,
 			esPromotor: '',
 			esJvc: ''
 		}
