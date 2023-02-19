@@ -105,8 +105,8 @@
 					<b-collapse id="mnu-mapas" accordion="mi-menu" :visible="menuModel.mapas" role="tabpanel">
 						<b-card-body>
 							<b-list-group>
-								<b-list-group-item @click="itemClick('/mapas')">
-									Mapas
+								<b-list-group-item @click="itemClick('/mapas/planes')">
+									Planes de Inversión
 								</b-list-group-item>
 							</b-list-group>
 						</b-card-body>
