@@ -16,7 +16,7 @@
 					<b-collapse id="mnu-programas" accordion="mi-menu" :visible="menuModel.programas" role="tabpanel">
 						<b-card-body>
 							<b-list-group>
-								<b-list-group-item @click="itemClick('/programas')">
+								<b-list-group-item class="btn btn-outline-secondary" @click="itemClick('/programas')">
 									Lista
 								</b-list-group-item>
 							</b-list-group>
@@ -32,7 +32,7 @@
 					<b-collapse id="mnu-proyectos" accordion="mi-menu" :visible="menuModel.proyectos" role="tabpanel">
 						<b-card-body>
 							<b-list-group>
-								<b-list-group-item @click="itemClick('/proyectos')">
+								<b-list-group-item class="btn btn-outline-secondary" @click="itemClick('/proyectos')">
 									Lista
 								</b-list-group-item>
 							</b-list-group>
@@ -48,10 +48,10 @@
 					<b-collapse id="mnu-protagonistas" accordion="mi-menu" :visible="menuModel.protagonistas" role="tabpanel">
 						<b-card-body>
 							<b-list-group>
-								<b-list-group-item @click="itemClick('/protagonistas')">
+								<b-list-group-item class="btn btn-outline-secondary" @click="itemClick('/protagonistas')">
 									Lista
 								</b-list-group-item>
-								<b-list-group-item @click="itemClick('/protagonistas/form/')">
+								<b-list-group-item class="btn btn-outline-secondary" @click="itemClick('/protagonistas/form/')">
 									Nuevo
 								</b-list-group-item>
 							</b-list-group>
@@ -67,10 +67,10 @@
 					<b-collapse id="mnu-bonos" accordion="mi-menu" :visible="menuModel.bonos" role="tabpanel">
 						<b-card-body>
 							<b-list-group>
-								<b-list-group-item @click="itemClick('/bonos')">
+								<b-list-group-item class="btn btn-outline-secondary" @click="itemClick('/bonos')">
 									Lista
 								</b-list-group-item>
-								<b-list-group-item @click="itemClick('/bonos/form/')">
+								<b-list-group-item class="btn btn-outline-secondary" @click="itemClick('/bonos/form/')">
 									Nuevo
 								</b-list-group-item>
 							</b-list-group>
@@ -86,10 +86,10 @@
 					<b-collapse id="mnu-planes" accordion="mi-menu" :visible="menuModel.planes" role="tabpanel">
 						<b-card-body>
 							<b-list-group>
-								<b-list-group-item @click="itemClick('/planes')">
+								<b-list-group-item class="btn btn-outline-secondary" @click="itemClick('/planes')">
 									Lista
 								</b-list-group-item>
-								<b-list-group-item @click="itemClick('/planes/form/')">
+								<b-list-group-item class="btn btn-outline-secondary" @click="itemClick('/planes/form/')">
 									Nuevo
 								</b-list-group-item>
 							</b-list-group>
@@ -105,7 +105,7 @@
 					<b-collapse id="mnu-mapas" accordion="mi-menu" :visible="menuModel.mapas" role="tabpanel">
 						<b-card-body>
 							<b-list-group>
-								<b-list-group-item @click="itemClick('/mapas/planes')">
+								<b-list-group-item class="btn btn-outline-secondary" @click="itemClick('/mapas/planes')">
 									Planes de Inversión
 								</b-list-group-item>
 							</b-list-group>

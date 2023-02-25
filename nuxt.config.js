@@ -68,7 +68,10 @@ export default {
     basemapUrl: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
     basemapAttribution: '<a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
     basemapZoom: 11,
-    basemapCenter: [12.01454337239549, -83.76503801461611]  // Bluefields
+    basemapMunZoom: 9,
+    basemapRegZoom: 8,
+    basemapMunCenter: [12.01454337239549, -83.76503801461611],  // Bluefields
+    basemapRegCenter: [12.1602, -84.1141] // RACCS
   },
 
   transformAssetUrls: {

@@ -3,7 +3,7 @@
 		<h1 class="text-uppercase my-3">
 			&#x2632; Protagonistas
 		</h1>
-		<Searchbar placeholder="Cedula" @search="buscar" />
+		<Searchbar placeholder="Buscar" buscar-por="cédula, nombres o apellidos" @search="buscaDatos" @resetSearch="buscaDatos" />
 		<b-table
 		striped
 		hover
@@ -34,8 +34,15 @@ export default {
 			const rowId = row[0].cedula
 			this.$router.push({ name: 'protagonistas-ced', params: { ced: rowId } })
 		},
-		buscar () {
-			// TODO: Crear implementación
+		async buscaDatos (termino = null) {
+			let url = ''
+			if (termino === null) {
+				url = 'protagonistas/'
+			} else {
+				url = `protagonistas/?search=${termino.trim()}`
+			}
+			const lista = await this.$axios.$get(url)
+			this.lista = lista.results
 		}
 	}
 }

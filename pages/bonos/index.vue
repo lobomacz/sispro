@@ -3,7 +3,7 @@
 		<h3 class="text-uppercase my-3">
 			&#x2635; Bonos
 		</h3>
-		<Searchbar placeholder="Nombre Bono" @search="buscar" />
+		<Searchbar placeholder="Buscar" buscar-por="nombre del bono o nombre del protagonista" @search="buscaDatos" @resetSearch="buscaDatos" />
 		<b-table
 		striped
 		hover
@@ -13,6 +13,12 @@
 		:select-mode="selectMode"
 		@row-selected="verDetalle"
 		/>
+		<b-alert
+		variant="warning"
+		show="!items.length > 0"
+		>
+			Sin datos para mostrar
+		</b-alert>
 	</b-container>
 </template>
 <script>
@@ -39,8 +45,14 @@ export default {
 			const id = row[0].id
 			this.$router.push({ name: 'bonos-id', params: { id } })
 		},
-		async buscar (termino) {
-			const bonos = await this.$axios.$get('bonos-protagonista/?nombre=' + termino.trim())
+		async buscaDatos (termino = null) {
+			let url = ''
+			if (termino === null) {
+				url = 'bonos-protagonista/lista/'
+			} else {
+				url = `bonos-protagonista/lista/?buscar=${termino.trim()}`
+			}
+			const bonos = await this.$axios.$get(url)
 			this.items = bonos
 		}
 	}

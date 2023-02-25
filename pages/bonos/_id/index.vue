@@ -88,7 +88,7 @@
 						<hr v-if="marker !== null">
 						<div v-if="marker !== null" id="map-wrap" style="height: 30rem;">
 							<client-only>
-								<l-map  :zoom="mapZoom" :center="latlng">
+								<l-map ref="mMapa" :zoom="mapZoom" :center="latlng">
 									<l-tile-layer :url="mapTile" :attribution="attribution"></l-tile-layer>
 									<l-marker :lat-lng="latlng"></l-marker>
 								</l-map>

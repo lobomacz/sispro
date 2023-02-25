@@ -3,7 +3,7 @@
 		<h3 class="text-uppercase my-3">
 			&#x2632; Planes de Inversión
 		</h3>
-		<Searchbar placeholder="Nombre Plan" @search="buscar" />
+		<Searchbar placeholder="Buscar" buscar-por="nombre del plan o nombre del protagonista" @search="buscaDatos" @resetSearch="buscaDatos" />
 		<b-table
 		striped
 		hover
@@ -45,9 +45,15 @@ export default {
 			const id = row[0].id
 			this.$router.push({ name: 'planes-id', params: { id } })
 		},
-		async buscar (termino) {
-			const bonos = await this.$axios.$get('planes-protagonista/?nombre=' + this.termino.trim())
-			this.bonosProtagonistas = bonos
+		async buscaDatos (termino = null) {
+			let url = ''
+			if (termino === null) {
+				url = 'planes-protagonista/lista/'
+			} else {
+				url = `planes-protagonista/lista/?buscar=${termino.trim()}`
+			}
+			const planesProtagonistas = await this.$axios.$get(url)
+			this.items = planesProtagonistas
 		}
 	}
 }
