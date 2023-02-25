@@ -13,3 +13,4 @@ export default function ({ app, store, redirect }) {
 		}
 	}
 }
+// TODO: Agregar implementación para obtener credenciales del local storage y validar el tiempo de sesión iniciada.
